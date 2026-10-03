@@ -3,17 +3,20 @@
 
 void main()
 {
-    char name[] = "Virat Kohli";
-    char username[5];
+    char fname[10];
+    printf("Enter Full Name:");
+    scanf("%s",&fname);
 
-    if(strlen(name) <= 5)
+    char username[6];
+
+    if(strlen(fname) <= 5)
     {
-        strcpy(username, name);
+        strcpy(username, fname);
     }
     else
     {
-        strncpy(username, name, 5);
-        username[5] = '\0';
+        strncpy(username, fname, 5);
+        username[6] = '\0';
     }
 
     printf("Username: %s", username);
