@@ -1,0 +1,9 @@
+Day 1: 1 minutes
+Day 2: 2 minutes
+Day 3: 3 minutes
+Day 4: 4 minutes
+Day 5: 5 minutes
+Day 6: 6 minutes
+Day 7: 7 minutes
+Average minutes of music in a week is : 4
+Maximum minutes: 7
