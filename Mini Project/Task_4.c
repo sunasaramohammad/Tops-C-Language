@@ -1,54 +1,87 @@
 #include <stdio.h>
 
-void main() {
+void main()
+{
     int min[7];
-    int i ,total =0  ,max;
-    float avg;
+    int i;
+    int choice;
+    FILE *file;
 
+   
 
-    // Enter and store data in array
-    for (i = 0; i < 7; i++) {
-        printf("Enter minutes for day %d: ", i + 1);
-        scanf("%d", &min[i]);
-    }
+    do
+    {
+        printf("Music Listening Logger\n");
+        printf("1) Log new listening minutes\n2) View Weekly Summery\n3) Exit the app.\n");
+        printf("Enter the choice : ");
+        scanf("%d", &choice);
 
-    // Open file            
-    FILE *file = fopen("music_log.txt", "w");
+        if(choice == 1)
+        {
+            file = fopen("music_log.txt", "w");
+            if(file == NULL)
+            {
+                printf("Error opening file.\n");
+            }
 
-    // Save array data to file
-    max=min[0];
-    for (i = 0; i < 7; i++) {
-        fprintf(file, "Day %d: %d minutes\n", i + 1, min[i]);
-        total=total + min[i];
-        if(min[i] > max){
-        max = min[i];
-        } 
-    }
-    avg=(float)total / 7;
-    fprintf(file,"Average minutes of music in a week is : %.2f\n",avg);
-    fprintf(file,"Maximum minutes: %d\n", max);
-    fclose(file);
+            else
+            {
+                for(i=0;i<7;i++)
+                {
+                    printf("Enter the new minutes on day : %d = ", i+1);
+                    scanf("%d", &min[i]);
+                    fprintf(file, "%d\n", min[i]);
+                }
+                fclose(file);
+                printf("Listening data saved successfully.\n");
+            }
+        }
 
+        else if(choice == 2)
+        {
+            int total = 0;
+            int highest = 0;
+            float average;
 
-    //read file
-    file = fopen("music_log.txt", "r");
+            file = fopen("music_log.txt", "r");
 
-    if (file == NULL) {
-        printf("File could not be opened.\n");
-    }
+            if(file == NULL)
+            {
+                printf("there is no any music found!\n");
+            }
 
-    printf("\nWeekly Report:\n");
+            else
+            {
+             
+                for(i=0;i<7;i++)
+                {
+                    fscanf(file, "%d", &min[i]);
+                    total = total + min[i];
 
-    char line[100];
+                    if(min[i] > highest)
+                    {
+                        highest = min[i];
+                    }
+                }
 
-    while (fgets(line, sizeof(line), file) != NULL) {
-        printf("%s", line);
-    }
+                fclose(file);    
 
-    
-    // Close file
-    fclose(file);
+                average = (float)total /7;
+                printf("Weekly Report\n");
+                printf("Total music listening : %d minutes\n", total);
+                printf("Highest music listening : %d minutes\n", highest);
+                printf("Average music listening : %.2f minutes\n", average);
+            }
+        }
 
-    printf("Data saved successfully.");
+        else if(choice == 3)
+        {
+            printf("Thanks for using app.");
+        }
 
+        else
+        {
+            printf("Invalid number ! Choose correctly.");
+        }
+    }while(choice !=3);
 }

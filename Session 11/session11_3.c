@@ -7,7 +7,7 @@ void main(){
 
     for(i=0;i<5;i++){
 
-        printf("value of order %d: %d\n", i, zomatoOrder[i]);
+        printf("value of order %d: %d\n", i+1, zomatoOrder[i]);
         printf("address of Zomato Order: %u\n",&zomatoOrder[i]);
         printf("address of ptrOrder using pointer: %u\n",ptrOrder+i);
         printf("\n");
